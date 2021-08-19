@@ -36,5 +36,5 @@ func (server *Server) Initialize(Dbdriver, DbURL string) {
 
 func (server *Server) Run(addr string) {
 	fmt.Println("Listening to port " + addr)
-	log.Fatal(http.ListenAndServe(addr, server.Router))
+	log.Fatal(http.ListenAndServe(":"+addr, server.Router))
 }
