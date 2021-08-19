@@ -1,1 +1,1 @@
-web: main
+web: goresume-api
