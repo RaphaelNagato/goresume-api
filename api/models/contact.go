@@ -8,6 +8,7 @@ import (
 //Message Struct(Model)
 type ContactMe struct {
 	ID          string
+	Title       string `gorm:"not null" json:"title"`
 	Subject     string `gorm:"not null" json:"subject"`
 	Message     string `gorm:"not null" json:"message"`
 	SenderEmail string `gorm:"not null" json:"sender"`
