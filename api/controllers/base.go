@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres" //postgres database driver
@@ -36,5 +37,6 @@ func (server *Server) Initialize(Dbdriver, DbURL string) {
 
 func (server *Server) Run(addr string) {
 	fmt.Println("Listening to port " + addr)
-	log.Fatal(http.ListenAndServe(":"+addr, server.Router))
+	log.Fatal(http.ListenAndServe(":"+addr, handlers.CORS(handlers.AllowedHeaders([]string{"Content-Type"}),
+		handlers.AllowedMethods([]string{"GET", "POST"}), handlers.AllowedOrigins([]string{"*"}))(server.Router)))
 }
