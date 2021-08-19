@@ -15,12 +15,11 @@ type Server struct {
 	Router *mux.Router
 }
 
-func (server *Server) Initialize(Dbdriver, DbUser, DbPassword, DbPort, DbHost, DbName string) {
+func (server *Server) Initialize(Dbdriver, DbURL string) {
 
 	var err error
 	if Dbdriver == "postgres" {
-		DBURL := fmt.Sprintf("host=%s port=%s user=%s dbname=%s sslmode=disable password=%s", DbHost, DbPort, DbUser, DbName, DbPassword)
-		server.DB, err = gorm.Open(Dbdriver, DBURL)
+		server.DB, err = gorm.Open(Dbdriver, DbURL)
 		if err != nil {
 			fmt.Printf("Cannot connect to %s database\n", Dbdriver)
 			log.Fatal("This is the error:", err)
