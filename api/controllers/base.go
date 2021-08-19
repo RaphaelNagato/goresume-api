@@ -38,5 +38,5 @@ func (server *Server) Initialize(Dbdriver, DbURL string) {
 func (server *Server) Run(addr string) {
 	fmt.Println("Listening to port " + addr)
 	log.Fatal(http.ListenAndServe(":"+addr, handlers.CORS(handlers.AllowedHeaders([]string{"Content-Type"}),
-		handlers.AllowedMethods([]string{"GET", "POST"}), handlers.AllowedOrigins([]string{"*"}))(server.Router)))
+		handlers.AllowedMethods([]string{"POST"}), handlers.AllowedOrigins([]string{"*"}))(server.Router)))
 }
